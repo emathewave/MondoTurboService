@@ -6,9 +6,7 @@
 <title>Mondo Turbo Service – Riparazione e revisione turbine a Parma</title>
 <meta name="description" content="Specialisti a Parma, più di 35 anni di esperienza: riparazione, revisione e modifica di turbine auto, pulizia del filtro antiparticolato molto sporco. Centro autorizzato Mitsubishi Turbocharger, Garrett e KKK.">
 <meta name="theme-color" content="#000000">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,700;1,800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <script>document.documentElement.classList.add("js");
 (function(){try{
   var d=document.documentElement;d.classList.add('intro');
@@ -300,6 +298,12 @@ html.intro .hero-logo img { animation: none; opacity: 0; }
 .contact { overflow: hidden; }
 .mapview { width: 100%; max-width: 100%; }
 .mapview iframe { max-width: 100%; position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+footer a { color: var(--bone); text-decoration: underline; }
+.map-activate { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; }
+.map-activate img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.map-activate:hover img, .map-activate:focus-visible img { transform: scale(1.03); }
+.map-note { position: absolute; top: 10px; left: 10px; max-width: calc(100% - 20px); padding: .35rem .8rem; background: rgba(0,0,0,.82); color: var(--bone); font-size: .82rem; font-weight: 500; }
+.map-attrib { position: absolute; right: 8px; bottom: 8px; padding: 2px 8px; background: rgba(0,0,0,.72); color: var(--bone); font-size: .72rem; pointer-events: none; }
 .mapview { position: relative; overflow: hidden; aspect-ratio: 4 / 3; min-height: 20rem; background: #e8e8e6; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .mapview.grabbing { cursor: grabbing; }
 .mapview.active { touch-action: none; }
@@ -819,7 +823,12 @@ html.js .tilt.reveal.in { transition: transform .5s cubic-bezier(.2,.8,.2,1), op
       </div>
       <div class="mapbox">
         <div class="mapview">
-          <iframe title="Mappa di Mondo Turbo Service, Via Alberto del Bono 3, Parma" src="https://www.google.com/maps?q=Mondo+Turbo+Service+Via+Alberto+del+Bono+3+43123+Parma&amp;hl=it&amp;z=16&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <!-- anteprima statica: Google Maps si carica solo al primo tocco -->
+          <button type="button" class="map-activate" id="mapload" aria-label="Attiva la mappa interattiva di Google Maps">
+            <img src="img/mappa.webp" alt="Mappa: Mondo Turbo Service, Via Alberto del Bono 3, Parma" loading="lazy">
+            <span class="map-note">Tocca per usare la mappa · si carica da Google</span>
+            <span class="map-attrib">Dati mappa ©2026 Google</span>
+          </button>
         </div>
         <div class="map-card">
           <div><strong>Mondo Turbo Service</strong><br><small>Via Alberto del Bono, 3, 43123 Parma</small></div>
@@ -912,12 +921,26 @@ html.js .tilt.reveal.in { transition: transform .5s cubic-bezier(.2,.8,.2,1), op
 
 <footer>
   <div class="wrap">
-    <div>© 2026 Mondo Turbo Service</div>
+    <div>© 2026 Mondo Turbo Service · <a href="privacy.html">Privacy policy</a> · <a href="privacy.html#cookie">Cookie policy</a></div>
     <div>Via Alberto del Bono, 3, 43123 Parma · <span style="white-space:nowrap">P.IVA 02918260346</span></div>
   </div>
 </footer>
 
 <script>
+/* Al primo tocco l'anteprima diventa la mappa interattiva: prima nessun dato va a Google */
+(function () {
+  var btn = document.getElementById('mapload');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.title = 'Mappa di Mondo Turbo Service, Via Alberto del Bono 3, Parma';
+    f.src = 'https://www.google.com/maps?q=Mondo+Turbo+Service+Via+Alberto+del+Bono+3+43123+Parma&hl=it&z=16&output=embed';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'no-referrer-when-downgrade';
+    btn.replaceWith(f);
+  });
+})();
+
 /* Menu */
 (function () {
   var btn = document.querySelector('.menu-btn');
