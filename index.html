@@ -277,6 +277,7 @@ html.intro .hero-logo img { animation: none; opacity: 0; }
 .rv-wrap { position: relative; padding: 0 3.2rem; }
 .reviews-grid { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: .2rem 0 .5rem; align-items: stretch; }
 .reviews-grid::-webkit-scrollbar { display: none; }
+.rv-more { margin-top: 2rem; display: flex; justify-content: center; }
 .review { flex: 0 0 min(370px, 82%); scroll-snap-align: start; margin: 0; position: relative; display: flex; flex-direction: column; gap: .9rem; padding: 1.2rem 1.2rem 1rem; background: linear-gradient(160deg, var(--graphite-2), var(--graphite)); border: 1px solid var(--line); border-top: 3px solid var(--red); }
 .review::before { content: "“"; position: absolute; top: -.3rem; right: .8rem; font-family: var(--display); font-style: italic; font-weight: 800; font-size: 4rem; line-height: 1; color: var(--red); opacity: .22; pointer-events: none; }
 .review .stars { color: var(--red); letter-spacing: .18em; font-size: .95rem; }
@@ -916,6 +917,7 @@ html.js .tilt.reveal.in { transition: transform .5s cubic-bezier(.2,.8,.2,1), op
       </div>
       <button class="rv-btn next" type="button" aria-label="Recensioni successive">›</button>
       </div>
+      <div class="rv-more reveal"><a class="btn btn-line" href="https://share.google/1urjwS1ty1KAJk7qc" target="_blank" rel="noopener noreferrer"><span>Vedi tutte le recensioni su Google</span></a></div>
     </div>
   </section>
 
